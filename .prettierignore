@@ -1,0 +1,10 @@
+node_modules
+dist
+src/api/generated
+api/openapi.json
+public/mockServiceWorker.js
+pnpm-lock.yaml
+docs/frontend-plan.md
+docs/release.json
+test-results
+playwright-report

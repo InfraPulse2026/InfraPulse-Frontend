@@ -1,26 +1,21 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter } from 'react-router-dom'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import App from './App'
-import './index.css'
-
-const queryClient = new QueryClient({
-  defaultOptions: {
-    queries: {
-      refetchOnWindowFocus: false, // мониторинг не должен дёргаться при переключении вкладок
-      retry: 1,
-      staleTime: 2000,
-    },
-  },
-})
-
-createRoot(document.getElementById('root')!).render(
-  <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
-    </QueryClientProvider>
-  </StrictMode>,
-)
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import App from './app/App';
+import './app/styles.css';
+async function start() {
+  if (import.meta.env.DEV && import.meta.env.VITE_DEMO_MODE === 'true') {
+    const { worker } = await import('./mocks/browser');
+    await worker.start({
+      onUnhandledRequest(request, print) {
+        if (new URL(request.url).pathname.startsWith('/api/')) print.error();
+      },
+      serviceWorker: { url: '/mockServiceWorker.js' },
+    });
+  }
+  createRoot(document.getElementById('root')!).render(
+    <StrictMode>
+      <App />
+    </StrictMode>,
+  );
+}
+void start();

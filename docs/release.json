@@ -1,0 +1,22 @@
+{
+  "version": "0.9.0",
+  "date": "2026-10-16",
+  "backend": {
+    "version": "0.44.0",
+    "sha256": "91e0abcd53b4a6e83fe0dcb468672684715cb68c3cf1d5859b0b3e6d802e8441",
+    "backendCommit": "58d1e088f0fa0f744209b909e473a269779c1ea6",
+    "frozenAt": "2026-10-15"
+  },
+  "checks": {
+    "unit_component_api_contract": 97,
+    "browser_scenarios": 42,
+    "production_build": true,
+    "last_real_backend_postgresql_smoke_frontend_version": "0.5.0"
+  },
+  "boundaries": [
+    "Typed rollback, monitoring, topology, bulk placement, protocol options and UX verified locally with explicitly simulated contract fixtures, no real Agent writes",
+    "Live acceptance and final deployment/publication assigned to other developers by Oleg; see docs/team-handoff.md",
+    "No production Docker/real hardware/LLM/Ansible acceptance claim"
+  ],
+  "contents": "Standalone frontend source + dist + docs only; no backend or Collector source"
+}
